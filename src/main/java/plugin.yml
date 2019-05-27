@@ -1,0 +1,7 @@
+name: Login_Item_Fixed
+version: 0.1
+description: test plugin.
+author: mamireimu
+website: mamireimuserver.com
+#---s
+main: com.mamireimuserver.login_item_fixed.Login_Item_fixed_main
