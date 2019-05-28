@@ -12,6 +12,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -208,10 +210,10 @@ public class Login_Item_fixed_main extends JavaPlugin {
      * PlayerJoinイベント処理
      * @param event JOINイベント情報
      */
-    /*
+   
     @EventHandler
     public void onLogin(PlayerJoinEvent event) {
-        
+        /*
         //Configからデータを取得する
         String item_object = getConfig().getString("Item_object");
         String item_name = getConfig().getString("Item_name");
@@ -231,6 +233,61 @@ public class Login_Item_fixed_main extends JavaPlugin {
         int stack = event.getPlayer().getInventory().getContents(item_object);
         event.getPlayer().getInventory().removeItem(item_object);
         event.getPlayer().getInventory().addItem(itemStack);
+        */
+        Player player = event.getPlayer();
+        if(item_type!=null)
+            {
+                PlayerInventory inv = player.getInventory();
+                for(int n = 0; n<=35; n++)
+                {
+                        if(inv.getItem(n)!=null
+                                        && inv.getItem(n).getType().equals(Material.matchMaterial(item_type)))
+                        {
+                                inv.setItem(n, new ItemStack(Material.AIR));
+                        }
+                }
+                if(inv.getBoots()!=null
+                                && inv.getBoots().getType().equals(Material.matchMaterial(item_type)))
+                {
+                        player.getInventory().setBoots(new ItemStack(Material.AIR));
+                }
+                if(inv.getLeggings()!=null
+                                && inv.getLeggings().getType().equals(Material.matchMaterial(item_type)))
+                {
+                        player.getInventory().setLeggings(new ItemStack(Material.AIR));
+                }
+                if(inv.getChestplate()!=null
+                                && inv.getChestplate().getType().equals(Material.matchMaterial(item_type)))
+                {
+                        player.getInventory().setChestplate(new ItemStack(Material.AIR));
+                }
+                if(inv.getHelmet()!=null
+                                && inv.getHelmet().getType().equals(Material.matchMaterial(item_type)))
+                {
+                        player.getInventory().setHelmet(new ItemStack(Material.AIR));
+                }
+                if(player.getOpenInventory()!=null)
+                {
+                        if(player.getOpenInventory().getCursor()!=null
+                                        && player.getOpenInventory().getCursor().getType().equals(Material.matchMaterial(item_type)))
+                        {
+                                player.getOpenInventory().setCursor(new ItemStack(Material.AIR));
+                        }
+                }
+
+                ItemStack giveItem = new ItemStack(Material.matchMaterial(item_type));
+                ItemMeta meta = giveItem.getItemMeta();
+                if(item_name!=null)
+                {
+                        meta.setDisplayName(item_name);
+                }
+                if(item_lore!=null)
+                {
+                        meta.setLore(Arrays.asList(item_lore.split("%n"))); //『%n』で改行される
+                }
+                giveItem.setItemMeta(meta);
+                player.getInventory().addItem(giveItem);
+            }
     }
-    */
+    
 }

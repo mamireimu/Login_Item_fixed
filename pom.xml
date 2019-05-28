@@ -21,7 +21,7 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.13.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
@@ -29,6 +29,7 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
+                    <include>config.yml</include>
                     <include>plugin.yml</include>
                 </includes>
             </resource>

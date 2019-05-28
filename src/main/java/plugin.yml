@@ -5,3 +5,9 @@ author: mamireimu
 website: mamireimuserver.com
 #---s
 main: com.mamireimuserver.login_item_fixed.Login_Item_fixed_main
+#---
+commands:
+    item:
+        description: item command.
+    giveitem:
+        description: item command.
