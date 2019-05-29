@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -23,7 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author mami
  */
-public class Login_Item_fixed_main extends JavaPlugin {
+public class Login_Item_fixed_main extends JavaPlugin implements Listener{
 
     FileConfiguration config;
     String item_type;
@@ -42,6 +43,8 @@ public class Login_Item_fixed_main extends JavaPlugin {
         config = getConfig();
         loadConfig();
         
+        //Event登録
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     /**
